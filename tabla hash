@@ -1,0 +1,23 @@
+Memoria Técnica del Proyecto: Tabla Hash Abierta en Java
+1. Introducción
+Este documento describe el desarrollo de una tabla hash abierta implementada en el lenguaje de programación Java, con claves tipo String y valores representados por objetos de tipo Empleado. El proyecto forma parte de una actividad relacionada con estructuras de datos, cuyo objetivo es comprender el funcionamiento y eficiencia de las tablas hash.
+2. Decisiones de Implementación
+Se optó por una implementación de tabla hash abierta usando arreglos de listas enlazadas (`LinkedList`) como estructura de soporte. Esto permite manejar colisiones de manera sencilla y eficiente. La clave de los elementos es una cadena (`String`), mientras que el valor es un objeto de la clase `Empleado`, que almacena el nombre, DNI y puesto.
+3. Factor de Carga y Redispersión
+El factor de carga se calcula automáticamente tras cada operación de inserción o borrado, dividiendo el número de elementos en la tabla entre su capacidad total. Cuando el factor de carga supera 0.75, se realiza una redispersión directa (duplicación de la capacidad). Si baja de 0.25 y la capacidad es mayor a 8, se realiza una redispersión inversa (reducción de capacidad a la mitad).
+4. Evolución del Factor de Carga
+La siguiente tabla resume los cambios en el factor de carga tras operaciones específicas sobre la tabla hash:
+Evento	Factor de Carga
+Inicio (0 elementos)	0.000
+Insertar Juan	0.250
+Insertar Ana	0.500
+Insertar Luis	0.750
+Insertar Carla (redispersión)	0.500
+Insertar Mario	0.625
+Eliminar Luis	0.500
+Eliminar Carla	0.375
+Eliminar Juan	0.250
+La siguiente gráfica visualiza cómo varía el factor de carga a lo largo del uso de la tabla:
+
+5. Conclusión
+Este proyecto permitió observar cómo el uso de una tabla hash abierta puede mantenerse eficiente a través de un control dinámico del factor de carga. La estrategia de redispersión garantiza un rendimiento aceptable incluso con múltiples operaciones de inserción y eliminación. Además, se mostró cómo representar un caso práctico realista mediante el almacenamiento y gestión de empleados.
